@@ -10,14 +10,16 @@ const listContacts = async () => {
 };
 
 const getContactById = async contactId => {
+  const id = String(contactId);
   const contacts = await listContacts();
-  const result = await contacts.find(contact => contact.id === contactId);
+  const result = await contacts.find(contact => contact.id === id);
   return result || null;
 };
 
 const removeContact = async contactId => {
+  const id = String(contactId);
   const contacts = await listContacts();
-  const idx = contacts.findIndex(item => item.id === contactId);
+  const idx = contacts.findIndex(item => item.id === id);
   if (idx === -1) {
     return null;
   }

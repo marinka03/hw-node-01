@@ -5,7 +5,10 @@ const {
   addContact,
 } = require('./contacts.js');
 
-const argv = require('yargs').argv;
+const yargs = require('yargs');
+const { hideBin } = require('yargs/helpers');
+const arr = hideBin(process.argv);
+const { argv } = yargs(arr);
 
 const invokeAction = async ({ action, id, name, email, phone }) => {
   switch (action) {
@@ -30,12 +33,4 @@ const invokeAction = async ({ action, id, name, email, phone }) => {
   }
 };
 
-invokeAction({ action: 'list' });
-invokeAction({ action: 'get', id: 'rsKkOQUi80UsgVPCcLZZW' });
-invokeAction({
-  action: 'add',
-  name: 'Nika Livington',
-  email: 'wejf_27dun@gmail.com',
-  phone: '(048) 478-3868',
-});
-invokeAction({ action: 'remove', id: 'ngb0tagibzm' });
+invokeAction(argv);
